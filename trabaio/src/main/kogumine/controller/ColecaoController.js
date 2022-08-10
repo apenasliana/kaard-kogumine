@@ -1,59 +1,41 @@
-const db = require ('../../../../server/database')
-const Colecao = require('../model/Colecao')
-const ColecaoServico = require('../services/ColecaoServico')
-const Carta = require('../model/Carta')
+const db = require("../../../../server/database");
 
+const Carta = require("../model/Carta");
+const SingletonServicos = require("../services/singleton/SingletonServicos");
 
-class ColecaoController{
-    Colecao
-    ColecaoServico
+class ColecaoController {
+  static ColecaoServico = SingletonServicos.getColecaoServico();
 
+  static listarCartasColecao(req, res) {
+    const idColecao = req.params.id;
+    ColecaoServico.listarCartasColecao(idColecao).then((result) => {
+      res.send(result);
+    });
+  }
+  static listColecao(req, res) {
+    const sqlSelectAll = "SELECT * FROM colecao";
+    db.query(sqlSelectAll, (err, result) => {
+      res.send(result);
+    });
+  }
+  static adicionarCarta(req, res) {
+    const idColecao = req.params.id;
+    const nomeCarta = req.body.nome;
+    const raridadeCarta = req.body.raridade;
+    const precoCarta = req.body.preco;
+    const qtdCarta = req.body.qtdCarta;
 
+    const carta = new Carta(nomeCarta, raridadeCarta, precoCarta);
 
-
-    static listarCartasColecao(req,res){
-        const idColecao = req.params.id
-        ColecaoServico.listarCartasColecao(idColecao).then((result)=>{
-            res.send(result)
-        })
-    }
-    static listColecao(req,res){
-        const sqlSelectAll = "SELECT * FROM colecao"
-        db.query(sqlSelectAll, (err,result)=>{
-            res.send(result)
-        })
-    }
-    static adicionarCarta(req,res){
-        const idColecao = req.params.id
-        const nomeCarta = req.body.nome
-        const raridadeCarta = req.body.raridade
-        const precoCarta = req.body.preco
-        const qtdCarta = req.body.qtdCarta
-
-        const carta = new Carta(nomeCarta,raridadeCarta,precoCarta)
-
-        ColecaoServico.adicionarCarta(carta, idColecao,qtdCarta).then((result)=>{
-            res.send(result)
-        })
-
-        
-
-
-
-
-    }
-    static removerCarta(req,res){
-        const idColecao = req.params.idC
-        const nomeCarta = req.body.nome
-        const raridadeCarta = req.body.raridade
-        const precoCarta = req.body.preco
-        const idExterno = req.body.idExterno
-
-        db.query("DELETE FROM colecao WHERE id = ?")
-
-        
-    }
+    ColecaoServico.adicionarCarta(carta, idColecao, qtdCarta).then((result) => {
+      res.send(result);
+    });
+  }
+  static removerCarta(req, res) {
+    const idColecao = req.params.id;
+    const idCarta = req.params.idC;
+    ColecaoServico.removerCarta(idColecao, idCarta);
+  }
 }
 
-
-module.exports = ColecaoController
+module.exports = ColecaoController;

@@ -1,13 +1,9 @@
-const util = require('util')
+const util = require("util");
 
-class CartaServico{
-    buscarExterno(){
-
-    }
-    criarCarta(){
-
-    }
-    buscarCarta(){
-        
-    }
+class CartaServico {
+  buscarExterno() {}
+  criarCarta() {}
+  buscarCarta() {}
 }
+
+module.exports = CartaServico;
