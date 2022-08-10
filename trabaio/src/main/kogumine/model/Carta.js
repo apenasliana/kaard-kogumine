@@ -2,9 +2,16 @@ class Carta{
     idCarta
     nome
     raridade
-    idExterno
     preco
     
+
+    constructor(nome,raridade, preco){
+        this.nome = nome
+        this.raridade = raridade
+        this.preco = preco
+    }
+
+
     // Getters and Setters
 
     getIdCarta(){
@@ -57,3 +64,5 @@ class Carta{
         this.preco = novoPreco
     }
 }
+
+module.exports = Carta

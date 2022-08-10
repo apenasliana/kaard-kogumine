@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kogumine - Your Collection Page</title>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+    </style>
+
+</head>
+<body>
+    <section id="container">
+        <div class="wrapper">
+            <div class="logo">
+                <div class="content">
+                    <a href="../home/home.html">
+                        <img src="../images/logo-editor.svg" alt="logo" class="logoimg">       
+                    </a>
+                    <h2 id="">Sua Coleção</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+                    </p>
+
+                </div>
+            </div>
+            <div class="card">
+                <p id="loginERROR" class="display-none">Email ou Senha inválido!</p>
+                <div class="login">
+                    <form>
+                        <input id="adicionarCarta" class="inputText" placeholder="Nome Da Carta" type="text"/>
+                        <input id="qtdCarta" class="inputText" placeholder="Quantidade" type="text"/>
+                        
+                        <button id="confirm" type="button" onClick="addCarta()">
+                            <div>
+                                <p>Adicionar Carta</p>
+                            </div>
+                        </button>
+                    </form>
+                    <ul id="listaDeCartas"></ul>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="wrapper">
+                <a target="_blank" href="">
+                    <img src="" alt="" class="logoimg">  
+                </a>
+                <p>Copyright 2022 | All Rights Reserved</p>
+
+            </div>
+        </div>
+    </section>
+    <script src="main.js"></script>
+</body>
+
+</html>

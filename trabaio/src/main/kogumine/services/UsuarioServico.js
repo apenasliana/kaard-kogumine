@@ -1,5 +1,6 @@
 const db = require("../../../../server/database")
 const util = require('util')
+const { query } = require("express")
 
 
 class UsuarioServico{
@@ -27,6 +28,7 @@ class UsuarioServico{
 
     }
 
+    
     static async deletarUsuario(id){
         const query = util.promisify(db.query).bind(db)
 
@@ -77,6 +79,8 @@ class UsuarioServico{
         }
 
     }
+
+
     static validarEmail(email){
         const sqlEmailSearch = "SELECT email FROM usuarios WHERE email = (?)"
 
@@ -101,6 +105,23 @@ class UsuarioServico{
             }
         })
     }
+    static async autenticar(email,senha){
+        const query = util.promisify(db.query).bind(db)
+
+
+        const auth = "SELECT usuarios.id,colecao.id AS idColecao FROM usuarios JOIN colecao ON colecao.idUsuario = usuarios.id WHERE email = (?) AND senha = (?)"
+
+        try{
+            const resultado = await query(auth,[email,senha])
+            if(resultado[0] != null){
+                return resultado[0]
+            }
+        }catch(err){
+            return err
+        }
+
+    }
+
 }
 
 module.exports = UsuarioServico

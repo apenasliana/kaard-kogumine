@@ -5,6 +5,17 @@ class Colecao{
     custoTotal
     numCartas
 
+
+ 
+
+
+    constructor(idUsuario,custoTotal,numCartas){
+        this.idUsuario  = idUsuario
+        this.custoTotal = custoTotal
+        this.numCartas  = numCartas
+    }
+
+
     adicionarCarta(){
         return kjfahgdajksfh
     }
@@ -70,3 +81,5 @@ class Colecao{
         this.numCartas = novoNumCartas
     }
 }
+
+module.exports = Colecao

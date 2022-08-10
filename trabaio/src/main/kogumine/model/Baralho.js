@@ -7,28 +7,29 @@ class Baralho{
     listaCartas
     qtdGostei
 
-    constructor(nome, idUsuario,custoTotal, numCartas){
+    constructor(nome, idUsuario,custoTotal, numCartas, listaCartas){
         this.nome = nome
         this.idUsuario = idUsuario
         this.custoTotal = custoTotal
         this.numCartas = numCartas
         this.qtdGostei = 0
+        this.listaCartas= listaCartas
     }
 
     adicionarCarta(){
-        return kjfahgdajksfh
+        return 
     }
     removerCarta(){
-        return asdkfjasd
+        return 
     }
     listarCartas(){
-        return asdjilfhasdlifh
+        return 
     }
     adicionarGostei(){
-        return asdjkf
+        return 
     }
     removerGostei(){
-        return sei
+        return 
     }
 
 

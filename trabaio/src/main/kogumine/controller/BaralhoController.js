@@ -9,13 +9,17 @@ class BaralhoController {
     BaralhoServico
 
     static postBaralho(req,res){
-        
+        const listaCartas = req.body.listaCartas
+
+
+
+
         const nome = req.body.nome
-        const idUsuario = req.params.id
+        const idUsuario = parseInt(req.params.id)
         const custoTotal = req.body.custoTotal
         const numCartas = req.body.numCartas
 
-        const baralho = new Baralho(nome,idUsuario,custoTotal,numCartas)
+        const baralho = new Baralho(nome,idUsuario,custoTotal,numCartas,listaCartas)
 
         BaralhoServico.postBaralho(baralho).then((result)=>{
             res.send(result)
@@ -29,7 +33,6 @@ class BaralhoController {
             res.send(result)
         })
     }
-
     static putBaralho(req,res){
         const idBaralho = req.params.idB
         
@@ -46,9 +49,7 @@ class BaralhoController {
     }
 
     static getBaralho(req,res){
-        const idBaralho = req.body.id
-
-
+        const idBaralho = req.params.id
         BaralhoServico.getBaralho(idBaralho).then((result)=>{
             res.send(result)
         })

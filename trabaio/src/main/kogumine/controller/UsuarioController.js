@@ -13,7 +13,6 @@ class UsuarioController {
         const email = req.body.email
 
         const usuario = new Usuario(username,senha,email)
-
         UsuarioServico.cadastrarUsuario(usuario).then((result)=>{
             res.send(result)
         })
@@ -51,6 +50,20 @@ class UsuarioController {
         UsuarioServico.putUsuario(usuario,id).then((result)=>{
             res.send(result)
         })
+    }
+
+    static autenticar(req,res){
+        const email = req.body.email
+        const senha = req.body.senha
+
+        UsuarioServico.autenticar(email,senha).then((result)=>{
+            if(result){
+                res.status(200).send(result)
+            }else{
+                res.status(401).send(result)
+            }
+        })
+
     }
 }
 

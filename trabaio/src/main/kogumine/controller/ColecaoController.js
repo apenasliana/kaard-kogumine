@@ -1,10 +1,22 @@
 const db = require ('../../../../server/database')
+const Colecao = require('../model/Colecao')
+const ColecaoServico = require('../services/ColecaoServico')
+const Carta = require('../model/Carta')
 
 
 class ColecaoController{
     Colecao
     ColecaoServico
 
+
+
+
+    static listarCartasColecao(req,res){
+        const idColecao = req.params.id
+        ColecaoServico.listarCartasColecao(idColecao).then((result)=>{
+            res.send(result)
+        })
+    }
     static listColecao(req,res){
         const sqlSelectAll = "SELECT * FROM colecao"
         db.query(sqlSelectAll, (err,result)=>{
@@ -12,33 +24,21 @@ class ColecaoController{
         })
     }
     static adicionarCarta(req,res){
-        const idColecao = req.params.idC
+        const idColecao = req.params.id
         const nomeCarta = req.body.nome
         const raridadeCarta = req.body.raridade
         const precoCarta = req.body.preco
-        const idExterno = req.body.idExterno
+        const qtdCarta = req.body.qtdCarta
 
+        const carta = new Carta(nomeCarta,raridadeCarta,precoCarta)
 
-        db.query("SELECT nome FROM carta WHERE nome = (?)",[nomeCarta],(err,resu)=>{
-            if(err){console.log(err)}
-            if(res == []){
-                const sqlInsert = "INSERT INTO carta (nome,raridade,preco,idExterno) VALUE (?,?,?,?)"
-
-                db.query(sqlInsert,[nomeCarta, raridadeCarta, precoCarta,idExterno],(err,result)=>{
-                    if(err){console.log(err)}
-                    const idCarta = result.insertId
-                    db.query("INSERT INTO carta_colecao (idCarta,idColecao) VALUE (?,?)",[idCarta,idColecao],(err,resultado)=>{
-                        if(err){console.log(err)}
-                        res.send(resultado)
-                    })
-                })
-            }
-            const idCarta = resu.insertId
-            db.query("INSERT INTO carta_colecao (idCarta,idColecao) VALUE (?,?)",[idCarta,idColecao],(err,result)=>{
-                if(err){console.log(err)}
-                res.send(result)
-            })
+        ColecaoServico.adicionarCarta(carta, idColecao,qtdCarta).then((result)=>{
+            res.send(result)
         })
+
+        
+
+
 
 
     }

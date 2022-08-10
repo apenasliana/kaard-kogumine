@@ -14,10 +14,10 @@ class Usuario{
     }
 
     criarBaralho(){
-        return kjfahgdajksfh
+        return 
     }
     removerBaralho(){
-        return asdkfjasd
+        return 
     }
     
     

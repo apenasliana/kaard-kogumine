@@ -15,22 +15,22 @@ router.delete("/usuarios/:id", UsuarioController.deleteUsuario)
 router.get("/usuarios", UsuarioController.listUsuario)
 router.get("/usuarios/:id", UsuarioController.getUsuario)
 router.put("/usuarios/:id", UsuarioController.putUsuario)
+router.post("/auth", UsuarioController.autenticar)
 
 // colecao //
 
-// router.get("/usuarios/:id/colecao", ColecaoController.listColecao)
-router.get("/usuarios/colecao", ColecaoController.listColecao)
-
+router.get("/colecao/:id", ColecaoController.listarCartasColecao)
+router.post("/colecao/:id", ColecaoController.adicionarCarta)
 
 // baralho //
 
 router.post("/usuarios/:id/baralho", BaralhoController.postBaralho)
-router.delete("/usuarios/:id/baralho/:idB", BaralhoController.deleteBaralho)
-router.get("/baralho/:idB", BaralhoController.getBaralho)
-router.put("/usuarios/:id/editBaralho/:idB",BaralhoController.putBaralho)
+router.delete("/baralho/:idB", BaralhoController.deleteBaralho)
+router.get("/baralho/:id", BaralhoController.getBaralho)
+router.put("/baralho/:idB",BaralhoController.putBaralho)
 
-router.put("/usuarios/:id/baralho/:idG/add", BaralhoController.adicionarGostei)
-router.put("/usuarios/:id/baralho/:idG/rem", BaralhoController.removerGostei)
+// router.put("/usuarios/:id/baralho/:idG/add", BaralhoController.adicionarGostei)
+// router.put("/usuarios/:id/baralho/:idG/rem", BaralhoController.removerGostei)
 
 
 
